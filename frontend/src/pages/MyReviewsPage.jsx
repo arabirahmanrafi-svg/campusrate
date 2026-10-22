@@ -3,8 +3,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { deleteReview, errorMessage, getMyReviews } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import ReviewCard from '../components/ReviewCard.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 export default function MyReviewsPage() {
+  usePageMeta({ title: 'My reviews', noindex: true });
   const { user, checking } = useAuth();
   const [reviews, setReviews] = useState(null);
   const [error, setError] = useState('');

@@ -3,8 +3,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { errorMessage, getNotifications, markNotificationsRead } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { formatDate } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 export default function NotificationsPage() {
+  usePageMeta({ title: 'Notifications', noindex: true });
   const { user, checking, refreshUnread } = useAuth();
   const [items, setItems] = useState(null);
   const [error, setError] = useState('');

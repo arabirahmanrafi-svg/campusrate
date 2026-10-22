@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBox from '../components/SearchBox.jsx';
 import { formatScore } from '../components/StarRating.jsx';
 import { getRankings, getTrending } from '../api.js';
+import usePageMeta from '../usePageMeta.js';
 
 const DISCOVER = [
   { to: '/fit', title: 'Find my fit', text: 'Answer six questions and get schools ranked for what matters to you.' },
@@ -12,6 +13,7 @@ const DISCOVER = [
 ];
 
 export default function HomePage() {
+  usePageMeta({ title: null });
   const [topSchools, setTopSchools] = useState([]);
   const [trending, setTrending] = useState([]);
 

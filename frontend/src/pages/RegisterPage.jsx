@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { errorMessage, fieldErrors } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { Honeypot } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 export default function RegisterPage() {
+  usePageMeta({ title: 'Create your account', noindex: true });
   const { register } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

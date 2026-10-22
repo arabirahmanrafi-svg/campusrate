@@ -3,8 +3,10 @@ import { Navigate } from 'react-router-dom';
 import { errorMessage, fieldErrors, updateProfile } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { STATUS_LABELS } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 export default function ProfilePage() {
+  usePageMeta({ title: 'Your profile', noindex: true });
   const { user, checking, setUser } = useAuth();
   const [form, setForm] = useState(null);
   const [errors, setErrors] = useState({});

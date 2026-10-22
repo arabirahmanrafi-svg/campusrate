@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /me/
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://campusrate.vercel.app/sitemap.xml

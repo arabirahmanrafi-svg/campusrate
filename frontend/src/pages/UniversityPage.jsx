@@ -10,6 +10,7 @@ import PlacesTab from './university/PlacesTab.jsx';
 import InternationalTab from './university/InternationalTab.jsx';
 import QuestionsTab from './university/QuestionsTab.jsx';
 import PhotosTab from './university/PhotosTab.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const TABS = [
   { key: 'overview', label: 'Overview' },
@@ -57,6 +58,18 @@ export default function UniversityPage() {
       setError(errorMessage(e));
     }
   }
+
+  const placeLabel = university ? [university.city, university.state].filter(Boolean).join(', ') : '';
+  usePageMeta({
+    title: university ? `${university.name} reviews: dorms, dining, courses & campus life` : null,
+    description: university
+      ? `What is it really like to study at ${university.name}${placeLabel ? ` in ${placeLabel}` : ''}? ` +
+        (university.reviewCount > 0
+          ? `Read ${university.reviewCount} honest student review${university.reviewCount === 1 ? '' : 's'} `
+          : 'Read honest student reviews ') +
+        'of academics, dorms, dining, courses, campus jobs and support for international students.'
+      : null,
+  });
 
   if (error && !university) return <div className="alert">{error}</div>;
   if (!university) return <div className="loading">Loading…</div>;

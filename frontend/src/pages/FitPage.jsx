@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { errorMessage, findFit, getCountries } from '../api.js';
 import { formatMoney } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const QUESTIONS = [
   ['academics', 'Strong academics'],
@@ -16,6 +17,7 @@ const IMPORTANCE = ['Not important', 'A little', 'Somewhat', 'Important', 'Very 
 
 /** "Find my fit": a short quiz that ranks schools by what the student cares about. */
 export default function FitPage() {
+  usePageMeta({ title: 'Find the right university for you', description: 'Answer six questions and get universities ranked by what matters to you, within your budget.' });
   const [weights, setWeights] = useState({ academics: 3, campusLife: 3, housing: 3, food: 2, safety: 3, international: 0 });
   const [maxYearlyCost, setMaxYearlyCost] = useState('');
   const [country, setCountry] = useState('');

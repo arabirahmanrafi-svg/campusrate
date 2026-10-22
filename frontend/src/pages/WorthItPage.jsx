@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { errorMessage, getValueForMoney } from '../api.js';
 import { ScatterChart } from '../components/Charts.jsx';
 import { formatMoney } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 /** Yearly cost (from student cost reports) against average rating: which schools are worth the money? */
 export default function WorthItPage() {
+  usePageMeta({ title: 'Is it worth the money? University cost vs. happiness', description: 'See what students really pay to live near each university against how happy they are there.' });
   const navigate = useNavigate();
   const [points, setPoints] = useState(null);
   const [error, setError] = useState('');

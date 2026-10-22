@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { answerQuestion, errorMessage, getQuestion, voteAnswer } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { formatDate, STATUS_LABELS } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 export default function QuestionPage() {
   const { id } = useParams();
@@ -47,6 +48,13 @@ export default function QuestionPage() {
       setError(errorMessage(err));
     }
   }
+
+  usePageMeta({
+    title: detail ? `${detail.question.title} · ${detail.universityName}` : null,
+    description: detail
+      ? detail.question.body || `Students answer: "${detail.question.title}" about ${detail.universityName}.`
+      : null,
+  });
 
   if (error && !detail) return <div className="alert">{error}</div>;
   if (!detail) return <div className="loading">Loading…</div>;

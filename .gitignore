@@ -15,3 +15,6 @@ frontend/.env
 
 # Uploaded photos (local development)
 backend/uploads/
+
+# Generated at build time
+frontend/public/sitemap.xml

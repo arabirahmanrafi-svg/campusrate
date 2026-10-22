@@ -12,6 +12,7 @@ import {
 import { useAuth } from '../AuthContext.jsx';
 import { BarChart } from '../components/Charts.jsx';
 import { formatDate } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const STAT_TILES = [
   ['users', 'Students'],
@@ -24,6 +25,7 @@ const STAT_TILES = [
 
 /** Admin dashboard: site numbers plus the moderation queues. */
 export default function AdminPage() {
+  usePageMeta({ title: 'Admin', noindex: true });
   const { user, checking } = useAuth();
   const [stats, setStats] = useState(null);
   const [flags, setFlags] = useState([]);

@@ -12,6 +12,7 @@ import {
 import { useAuth } from '../AuthContext.jsx';
 import { StarInput } from '../components/StarRating.jsx';
 import { Honeypot } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const RATINGS = [
   { field: 'academics', label: 'Academics', hint: 'teaching, classes, professors' },
@@ -38,6 +39,7 @@ const MAX_PHOTOS = 3;
 
 /** Used for both writing a new review (/universities/:id/review) and editing one (/reviews/:reviewId/edit). */
 export default function ReviewFormPage() {
+  usePageMeta({ title: 'Write a review', noindex: true });
   const { id, reviewId } = useParams();
   const isEdit = Boolean(reviewId);
   const location = useLocation();

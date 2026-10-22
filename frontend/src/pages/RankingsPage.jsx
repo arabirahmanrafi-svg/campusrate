@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { errorMessage, getCountries, getRankings } from '../api.js';
 import { CATEGORIES } from '../components/RatingBars.jsx';
 import { formatScore } from '../components/StarRating.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const CATEGORY_OPTIONS = [
   { key: 'overall', label: 'Overall' },
@@ -11,6 +12,7 @@ const CATEGORY_OPTIONS = [
 ];
 
 export default function RankingsPage() {
+  usePageMeta({ title: 'University rankings by students', description: 'Fair university rankings from real student reviews: overall, academics, housing, food, safety and international student support.' });
   const [category, setCategory] = useState('overall');
   const [country, setCountry] = useState('');
   const [countries, setCountries] = useState([]);

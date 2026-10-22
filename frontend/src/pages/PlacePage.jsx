@@ -4,6 +4,7 @@ import { errorMessage, getPlace, getPlaceTypes, reviewPlace } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { formatScore, reviewCountLabel, StarInput, Stars } from '../components/StarRating.jsx';
 import { formatDate, Honeypot, PhotoGrid, PhotoUploader } from '../components/Common.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 /**
  * A dorm, dining hall, course, campus job or club. The review form is built from the
@@ -108,6 +109,15 @@ export default function PlacePage() {
   useEffect(() => {
     getPlaceTypes().then(setTypes).catch(() => setTypes([]));
   }, []);
+
+  const metaPlace = detail?.place;
+  usePageMeta({
+    title: metaPlace ? `${metaPlace.name} at ${detail.universityName}: student reviews` : null,
+    description: metaPlace
+      ? `Student reviews and ratings of ${metaPlace.name} at ${detail.universityName}.` +
+        (metaPlace.description ? ` ${metaPlace.description}.` : '')
+      : null,
+  });
 
   if (error && !detail) return <div className="alert">{error}</div>;
   if (!detail) return <div className="loading">Loading…</div>;

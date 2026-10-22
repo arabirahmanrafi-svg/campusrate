@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { compareUniversities, errorMessage, searchUniversities } from '../api.js';
 import { RadarChart, SERIES_COLORS } from '../components/Charts.jsx';
 import { formatScore } from '../components/StarRating.jsx';
+import usePageMeta from '../usePageMeta.js';
 
 const ROWS = [
   ['avgOverall', 'Overall'],
@@ -58,6 +59,7 @@ function SchoolPicker({ onPick, exclude }) {
 }
 
 export default function ComparePage() {
+  usePageMeta({ title: 'Compare universities side by side', description: 'Compare two or three universities category by category using honest student reviews.' });
   const [searchParams, setSearchParams] = useSearchParams();
   const ids = (searchParams.get('ids') || '').split(',').filter(Boolean).map(Number);
   const [schools, setSchools] = useState([]);
